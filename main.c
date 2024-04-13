@@ -20,7 +20,7 @@ int main()
     // 9. Fusionner deux sommets
     //  10 . Quitter
 
-    graphe *G;
+    graphe *G = NULL;
 
     while (1)
     {
@@ -78,11 +78,11 @@ int main()
             if (G != NULL)
             {
                 printf("Ajout d'une arête...\n");
-                printf("Veuillez entrer le numéro du premier sommet pour lequel ajouter l'arrête \n");
+                printf("Veuillez entrer le numéro du premier sommet pour lequel ajouter l'arête \n");
                 int som1;
                 scanf("%d", &som1);
 
-                printf("Veuillez entrer le numéro du deuxième sommet pour lequel ajouter l'arrête \n");
+                printf("Veuillez entrer le numéro du deuxième sommet pour lequel ajouter l'arête \n");
                 int som2;
                 scanf("%d", &som2);
 
@@ -139,11 +139,15 @@ int main()
             exit(1);
         }
     }
+    
 
     /*
-    graphe *a = creeGraphe();
+    graphe *a = NULL;
+    a = creeGraphe();
     creerSommet(a, 2);
     printGraphe(a);
+    if (rechercherSommet(a, 2) != NULL)
+        printf("Sommet trouve ! \n");
     */
 
     return 0;

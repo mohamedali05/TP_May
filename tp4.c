@@ -9,7 +9,7 @@
 graphe *creeGraphe()
 {
     graphe *g = (graphe *)malloc(sizeof(graphe));
-    g->tete = NULL;
+    //g->tete = NULL;
     return g;
 }
 

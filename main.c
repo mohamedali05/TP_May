@@ -124,6 +124,7 @@ int main()
             {
                 printf("Supprimer un sommet...\n");
                 int som;
+                printf("Veuillez choisir un sommet à supprimer .\n");
                 scanf("%d", &som);
                 supprimerSommet(G, som);
             }

@@ -159,60 +159,80 @@ int rechercherDegreSommet(sommet *s)
 
 void supprimerSommet(graphe *g, int id)
 {
-    sommet *som = rechercherSommet(g, id);
-    if (som == NULL)
+    printf("Suppression d'un sommet: %d\n", id);
+    if (g->tete == NULL)
     {
-        printf("Le sommet que vous essayez de supprimer n'existe pas \n ");
+        printf("Le graphe est vide.\n");
         return;
     }
-    sommet *buff = g->tete;
-    if (buff == NULL)
-    {
-        return;
-    }
-    if (buff->indice == id)
-    {
-        g->tete = g->tete->suivant;
-    }
-    supprimerVoisin(buff, id);
 
-    while (buff->suivant != NULL)
+    sommet *current = g->tete;
+    sommet *previous = NULL;
+
+    // Trouver le sommet à supprimer et maintenir le lien avec le précédent
+    while (current != NULL && current->indice != id)
     {
-        if (buff->suivant->indice == id)
-        {
-            if (buff->suivant->suivant == NULL)
-            {
-                buff->suivant = NULL;
-            }
-            else
-            {
-                buff->suivant = buff->suivant->suivant;
-            }
-        }
-        supprimerVoisin(buff->suivant, id);
-        buff = buff->suivant;
+        previous = current;
+        current = current->suivant;
     }
+
+    // Si le sommet n'est pas trouvé
+    if (current == NULL)
+    {
+        printf("Le sommet que vous essayez de supprimer n'existe pas.\n");
+        return;
+    }
+
+    // Supprimer le sommet de la liste
+    if (previous == NULL)
+    { // Le sommet est la tête
+        g->tete = current->suivant;
+    }
+    else
+    {
+        previous->suivant = current->suivant;
+    }
+
+    // Supprimer le sommet de la liste des voisins des autres sommets
+    sommet *s = g->tete;
+    while (s != NULL)
+    {
+        supprimerVoisin(s, id);
+        s = s->suivant;
+    }
+
+    // Libérer la mémoire
+    free(current);
+    printf("Sommet %d supprimé.\n", id);
 }
 
 void supprimerVoisin(sommet *s, int id)
 {
-    voisin *buff = s->voisins;
-    if (buff == NULL)
-    {
+    if (s->voisins == NULL)
         return;
-    }
-    if (buff->indice == id)
+
+    voisin *current = s->voisins;
+    voisin *previous = NULL;
+
+    while (current != NULL && current->indice != id)
     {
-        s->voisins = s->voisins->voisin_suivant;
+        previous = current;
+        current = current->voisin_suivant;
     }
-    while (buff->voisin_suivant != NULL)
+
+    if (current == NULL)
+        return; // Voisin non trouvé
+
+    if (previous == NULL)
+    { // Le voisin est le premier de la liste
+        s->voisins = current->voisin_suivant;
+    }
+    else
     {
-        if (buff->voisin_suivant->indice == id)
-        {
-            buff->voisin_suivant = buff->voisin_suivant->voisin_suivant;
-        }
-        buff = buff->voisin_suivant;
+        previous->voisin_suivant = current->voisin_suivant;
     }
+
+    free(current);
 }
 
 // Affiche la liste des voisins d'un sommet donné

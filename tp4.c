@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include "tp4.h"
 
+// commentaire
 graphe *creeGraphe()
 {
     graphe *g = (graphe *)malloc(sizeof(graphe));

@@ -11,6 +11,7 @@ graphe *creeGraphe()
 {
     graphe *g = (graphe *)malloc(sizeof(graphe));
     //g->tete = NULL;
+    // autre commentaire
     return g;
 }
 

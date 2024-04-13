@@ -31,6 +31,7 @@ int main()
         printf("5. Afficher un graphe \n");
         printf("6. Donner le degré maximal du graphe \n");
         printf("7. Supprimer un sommet \n");
+        printf("10 . Quitter \n");
 
         int input;
         scanf("%d", &input);
@@ -134,9 +135,11 @@ int main()
                 printf("Graphe pas encore ajouté \n");
             }
             break;
+        case 10:
+            exit(1);
         default:
             printf("Option non valide. Veuillez choisir une option entre 1 et 5.\n");
-            exit(1);
+            break;
         }
     }
     

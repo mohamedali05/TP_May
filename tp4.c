@@ -110,6 +110,7 @@ void ajouterArete(graphe *g, int id1, int id2)
         {
             s1->voisins = (voisin *)malloc(sizeof(voisin));
             s1->voisins->indice = s2->indice;
+            s1->voisins->voisin_suivant = NULL;
         }
         else
         {
@@ -120,6 +121,7 @@ void ajouterArete(graphe *g, int id1, int id2)
             }
             buff->voisin_suivant = (voisin *)malloc(sizeof(voisin));
             buff->voisin_suivant->indice = s2->indice;
+            buff->voisin_suivant->voisin_suivant = NULL;
         }
 
         // ajout du voisin pour s2
@@ -127,6 +129,7 @@ void ajouterArete(graphe *g, int id1, int id2)
         {
             s2->voisins = (voisin *)malloc(sizeof(voisin));
             s2->voisins->indice = s1->indice;
+            s2->voisins->voisin_suivant = NULL;
         }
         else
         {
@@ -137,6 +140,7 @@ void ajouterArete(graphe *g, int id1, int id2)
             }
             buff->voisin_suivant = (voisin *)malloc(sizeof(voisin));
             buff->voisin_suivant->indice = s1->indice;
+            buff->voisin_suivant->voisin_suivant = NULL;
             printf("Ajout de l'arête réussi ! \n");
         }
     }

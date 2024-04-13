@@ -6,6 +6,7 @@
 #include "tp4.h"
 
 // commentaire
+// commentaire2
 graphe *creeGraphe()
 {
     graphe *g = (graphe *)malloc(sizeof(graphe));

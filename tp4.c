@@ -10,51 +10,22 @@
 graphe *creeGraphe()
 {
     graphe *g = (graphe *)malloc(sizeof(graphe));
-    //g->tete = NULL;
-    // autre commentaire
     return g;
 }
-/*
+
 void creerSommet(graphe *g, int id)
 {
+    // Vérifier si le sommet existe déjà
     if (rechercherSommet(g, id) != NULL)
     {
-        printf("Le sommet que vous essayez d'ajouter existe déjà \n");
-        return;
-    }
-    sommet *som = (sommet *)malloc(sizeof(sommet));
-    som->indice = id;
-
-    sommet *buff = g->tete;
-
-    if (buff == NULL || id < buff->indice)
-    {
-        g->tete = som;
-        return;
-    }
-    else
-    {
-        sommet *buff = g->tete;
-        while (buff->suivant != NULL && id > buff->suivant->indice)
-        {
-            buff = buff->suivant;
-        }
-        som->suivant = buff->suivant;
-        buff->suivant = som;
-    }
-}
-*/
-
-void creerSommet(graphe *g, int id) {
-    // Vérifier si le sommet existe déjà
-    if (rechercherSommet(g, id) != NULL) {
         printf("Le sommet que vous essayez d'ajouter existe déjà\n");
         return;
     }
-    
+
     // Créer un nouveau sommet
     sommet *nouveauSommet = (sommet *)malloc(sizeof(sommet));
-    if (nouveauSommet == NULL) {
+    if (nouveauSommet == NULL)
+    {
         printf("Erreur: Impossible d'allouer de la mémoire pour le nouveau sommet\n");
         return;
     }
@@ -63,7 +34,8 @@ void creerSommet(graphe *g, int id) {
     nouveauSommet->voisins = NULL; // Initialisation des voisins à NULL
 
     // Si le graphe est vide, le nouveau sommet devient la tête du graphe
-    if (g->tete == NULL || id < g->tete->indice) {
+    if (g->tete == NULL || id < g->tete->indice)
+    {
         nouveauSommet->suivant = g->tete;
         g->tete = nouveauSommet;
         return;
@@ -71,7 +43,8 @@ void creerSommet(graphe *g, int id) {
 
     // Recherche de l'emplacement où insérer le nouveau sommet dans la liste triée
     sommet *precedent = g->tete;
-    while (precedent->suivant != NULL && id > precedent->suivant->indice) {
+    while (precedent->suivant != NULL && id > precedent->suivant->indice)
+    {
         precedent = precedent->suivant;
     }
 
@@ -79,7 +52,6 @@ void creerSommet(graphe *g, int id) {
     nouveauSommet->suivant = precedent->suivant;
     precedent->suivant = nouveauSommet;
 }
-
 
 sommet *rechercherSommet(graphe *g, int id)
 {
@@ -101,10 +73,14 @@ void ajouterArete(graphe *g, int id1, int id2)
     sommet *s1 = rechercherSommet(g, id1);
     sommet *s2 = rechercherSommet(g, id2);
 
-
     if (s1 != NULL && s2 != NULL)
     {
-        
+        int arretePres = rechercherArrete(g, id1, id2);
+        if (arretePres == 1)
+        {
+            printf("l'arrête que vous souhaitez ajouter existe déjà \n");
+            return;
+        }
         // ajout du voisin pour s1
         if (s1->voisins == NULL)
         {
@@ -124,24 +100,28 @@ void ajouterArete(graphe *g, int id1, int id2)
             buff->voisin_suivant->voisin_suivant = NULL;
         }
 
-        // ajout du voisin pour s2
-        if (s2->voisins == NULL)
+        // Si l'arrête contient 2 fois le même sommet on ne l'ajoute qu'une seule fois dans le graphe
+        if (id1 != id2)
         {
-            s2->voisins = (voisin *)malloc(sizeof(voisin));
-            s2->voisins->indice = s1->indice;
-            s2->voisins->voisin_suivant = NULL;
-        }
-        else
-        {
-            voisin *buff = s2->voisins;
-            while (buff->voisin_suivant != NULL)
+            // ajout du voisin pour s2
+            if (s2->voisins == NULL)
             {
-                buff = buff->voisin_suivant;
+                s2->voisins = (voisin *)malloc(sizeof(voisin));
+                s2->voisins->indice = s1->indice;
+                s2->voisins->voisin_suivant = NULL;
             }
-            buff->voisin_suivant = (voisin *)malloc(sizeof(voisin));
-            buff->voisin_suivant->indice = s1->indice;
-            buff->voisin_suivant->voisin_suivant = NULL;
-            printf("Ajout de l'arête réussi ! \n");
+            else
+            {
+                voisin *buff = s2->voisins;
+                while (buff->voisin_suivant != NULL)
+                {
+                    buff = buff->voisin_suivant;
+                }
+                buff->voisin_suivant = (voisin *)malloc(sizeof(voisin));
+                buff->voisin_suivant->indice = s1->indice;
+                buff->voisin_suivant->voisin_suivant = NULL;
+                printf("Ajout de l'arête réussi ! \n");
+            }
         }
     }
     else
@@ -156,7 +136,7 @@ graphe *construireGraphe(int N)
     graphe *G = creeGraphe();
     for (int i = 0; i < N; i++)
     {
-        printf("Veuillez entrer le numéro du %d sommet à ajouter \n", (i + 1));
+        printf("Veuillez entrer le numéro du  sommet %d à ajouter \n", (i + 1));
         int input;
         scanf("%d", &input);
         creerSommet(G, input);
@@ -174,7 +154,7 @@ graphe *construireGraphe(int N)
 
         ajouterArete(G, som1, som2);
 
-        printf("Voulez-vous vous arrêter (1 pour oui) \n");
+        printf("Voulez-vous vous arrêter (1 pour oui , 0 pour non ) \n");
         scanf("%d", &input2);
     }
     return G;
@@ -195,6 +175,27 @@ int rechercherDegre(graphe *g)
         buff = buff->suivant;
     }
     return deg;
+}
+
+int rechercherArrete(graphe *g, int id1, int id2)
+{
+    sommet *s1 = rechercherSommet(g, id1);
+    sommet *s2 = rechercherSommet(g, id2);
+
+    if (s1 == NULL || s2 == NULL)
+    {
+        return 0;
+    }
+    voisin *v1 = s1->voisins;
+    while (v1 != NULL)
+    {
+        if (v1->indice == id2)
+        {
+            return 1;
+        }
+        v1 = v1->voisin_suivant;
+    }
+    return 0;
 }
 
 int rechercherDegreSommet(sommet *s)

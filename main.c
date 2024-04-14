@@ -43,18 +43,12 @@ int main()
             G = creeGraphe();
             break;
         case 2:
-            if (G == NULL)
-            {
-                printf("Graphe pas encore ajouté \n");
-            }
-            else
-            {
-                printf("Veuillez entrer le nombre de sommets que vous voulez ajouter \n");
-                int N;
-                scanf("%d", &N);
-                G = construireGraphe(N);
-                printf("Construction d'un graphe de N sommets...\n");
-            }
+            free(G);
+            printf("Veuillez entrer le nombre de sommets que vous voulez ajouter \n");
+            int N;
+            scanf("%d", &N);
+            G = construireGraphe(N);
+            printf("Construction d'un graphe de N sommets...\n");
 
             break;
         case 3:
@@ -142,7 +136,6 @@ int main()
             break;
         }
     }
-    
 
     /*
     graphe *a = NULL;

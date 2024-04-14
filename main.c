@@ -31,6 +31,7 @@ int main()
         printf("5. Afficher un graphe \n");
         printf("6. Donner le degré maximal du graphe \n");
         printf("7. Supprimer un sommet \n");
+        printf("9. Fusionner 2 sommets \n");
         printf("10 . Quitter \n");
 
         int input;
@@ -129,10 +130,28 @@ int main()
                 printf("Graphe pas encore ajouté \n");
             }
             break;
+        case 9:
+            if (G != NULL)
+            {
+                printf("Fusionner des sommets...\n");
+                int som1;
+                printf("Veuillez choisir le numéro du 1er sommet à fusionner  .\n");
+                scanf("%d", &som1);
+
+                int som2;
+                printf("Veuillez choisir le numéro du 2ème sommet à fusionner  .\n");
+                scanf("%d", &som2);
+                fusionnerSommet(G, som1, som2);
+            }
+            else
+            {
+                printf("Graphe pas encore ajouté \n");
+            }
+            break;
         case 10:
             exit(1);
         default:
-            printf("Option non valide. Veuillez choisir une option entre 1 et 5.\n");
+            printf("Option non valide. Veuillez choisir une option entre 1 et 10.\n");
             break;
         }
     }

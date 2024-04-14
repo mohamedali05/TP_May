@@ -65,4 +65,6 @@ void printListeVoisins(voisin *tete);
 
 void printGraphe(graphe *g);
 
+void fusionnerSommet(graphe *g, int idSommet1, int idSommet2);
+
 #endif // TP4_H

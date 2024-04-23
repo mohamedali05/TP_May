@@ -5,17 +5,17 @@
 int main() {
     graphe *G = NULL;
 
-    /*
+    
     // Ce code sert à initialiser un graphe par défaut 
     // Cela permet de partir avec une base fixe pour notre graphe et ne pas refaire à chaque fois le même
     G = creeGraphe() ; 
-    creerSommet(G, 1 , 1);
-    creerSommet(G, 2 , 1);
-    creerSommet(G, 3 , 1);
-    ajouterArete(G, 1, 2 , 1) ;
-    ajouterArete(G, 2, 3 , 1);
-    ajouterArete(G, 1, 3 ,1) ;
-    */
+    creerSommet(G, 1);
+    creerSommet(G, 2);
+    creerSommet(G, 3);
+    ajouterArete(G, 1, 2) ;
+    ajouterArete(G, 2, 3);
+    ajouterArete(G, 1, 3) ;
+    
 
 
     while (1) {
@@ -58,7 +58,7 @@ int main() {
                     printf("Veuillez entrer le numero du sommet a ajouter \n");
                     int som;
                     scanf("%d", &som);
-                    creerSommet(G, som , 1);
+                    creerSommet(G, som );
                     printf("ajout du sommet\n");
                 } else {
                     printf("Graphe pas encore ajoute \n");
@@ -75,7 +75,7 @@ int main() {
                     int som2;
                     scanf("%d", &som2);
 
-                    ajouterArete(G, som1, som2 , 1);
+                    ajouterArete(G, som1, som2 );
                 } else {
                     printf("Graphe pas encore ajoute \n");
                 }
@@ -103,7 +103,7 @@ int main() {
                     int som;
                     printf("Veuillez choisir un sommet a supprimer.\n");
                     scanf("%d", &som);
-                    supprimerSommet(G, som , 1);
+                    supprimerSommet(G, som );
                 } else {
                     printf("Graphe pas encore ajoute \n");
                 }
@@ -112,7 +112,7 @@ int main() {
             if (G != NULL)
             {
                 printf("Verifier si le graphe contient une boucle...\n");
-                int resultat = contientBoucle(*G);
+                int resultat = contientBoucle(G);
                 if (resultat == 1){
                     printf("Le graphe contient au moins une boucle.\n");
                 }else{

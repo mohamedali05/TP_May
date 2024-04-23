@@ -26,17 +26,11 @@ typedef struct graphe
 
 graphe *creeGraphe();
 
-/** 
-* @param aff 1 pour l'affichage 0 pour pas d'affichage
-*/
-void creerSommet(graphe *g, int id , int aff);
+void creerSommet(graphe *g, int id);
 
 sommet *rechercherSommet(graphe *g, int id);
 
-/** 
-* @param aff 1 pour l'affichage 0 pour pas d'affichage
-*/
-void ajouterArete(graphe *g, int id1, int  , int aff);
+void ajouterArete(graphe *g, int id1, int id2);
 
 graphe *construireGraphe(int N);
 
@@ -61,10 +55,7 @@ int rechercherDegre(graphe *g);
 int rechercherArrete(graphe *g, int id1, int id2);
 
 
-/** 
-* @param aff 1 pour l'affichage 0 pour pas d'affichage
-*/
-void supprimerSommet(graphe *g, int id , int aff);
+void supprimerSommet(graphe *g, int id);
 
 void supprimerVoisin(sommet *s, int id);
 
@@ -86,7 +77,7 @@ void libererMemoire(graphe *g);
  * @param g Le graphe à analyser.
  * @return 1 si le graphe contient une boucle, 0 sinon.
  */
-int contientBoucle(graphe g);
+int contientBoucle(graphe* g);
 
 void fusionnerSommet(graphe *g, int idSommet1, int idSommet2);
 

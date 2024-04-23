@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+<<<<<<< HEAD
+=======
+#include <math.h>
+>>>>>>> 1a18e4987aa74bc7d7854b7840aaf26c3c4aff75
 #include "tp3.h"
 
 int main() {

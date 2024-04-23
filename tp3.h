@@ -1,5 +1,5 @@
-#ifndef TP4_H
-#define TP4_H
+#ifndef TP3_H
+#define TP3_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -63,7 +63,7 @@ int rechercherDegreSommet(sommet *s);
 
 void printListeVoisins(voisin *tete);
 
-void afficherGraphe(graphe *g);
+void printGraphe(graphe *g);
 
 int contientBoucle(graphe *g);
 
@@ -71,4 +71,4 @@ void libererMemoire(graphe *g);
 
 void fusionnerSommet(graphe *g, int idSommet1, int idSommet2);
 
-#endif // TP4_H
+#endif // TP3_H

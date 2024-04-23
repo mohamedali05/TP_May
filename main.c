@@ -5,9 +5,10 @@
 int main() {
     graphe *G = NULL;
 
+    /*
     // Ce code sert à initialiser un graphe par défaut 
     // Cela permet de partir avec une base fixe pour notre graphe et ne pas refaire à chaque fois le même
-    /*G = creeGraphe() ; 
+    G = creeGraphe() ; 
     creerSommet(G, 1 , 1);
     creerSommet(G, 2 , 1);
     creerSommet(G, 3 , 1);
@@ -15,7 +16,6 @@ int main() {
     ajouterArete(G, 2, 3 , 1);
     ajouterArete(G, 1, 3 ,1) ;
     */
-
 
 
     while (1) {
@@ -34,6 +34,10 @@ int main() {
         switch (input) {
             case 1:
                 printf("Creation d'un graphe vide...\n");
+                if (G!= NULL)
+                {
+                    libererMemoire(G) ; 
+                }
                 G = creeGraphe();
                 break;
             case 2:

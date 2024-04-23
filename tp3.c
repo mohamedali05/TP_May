@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "tp4.h"
+#include "tp3.h"
 
 // Fonction pour créer un nouveau graphe
 graphe *creeGraphe() {
@@ -78,7 +78,7 @@ void ajouterArete(graphe *g, int id1, int id2 , int aff)
         if (rechercherArrete(g, id1, id2) == 1)
         {
             if (aff)
-                printf("L'arrête que vous souhaitez ajouter existe déjà.\n");
+                printf("L'arete que vous souhaitez ajouter existe deja.\n");
             return;
         }
 
@@ -87,7 +87,7 @@ void ajouterArete(graphe *g, int id1, int id2 , int aff)
         if (nouveauVoisin1 == NULL)
         {
             if(aff)
-                printf("Erreur: Impossible d'allouer de la mémoire pour le nouveau voisin\n");
+                printf("Erreur: Impossible d'allouer de la memoire pour le nouveau voisin\n");
             return;
         }
         nouveauVoisin1->indice = id2;
@@ -138,12 +138,12 @@ void ajouterArete(graphe *g, int id1, int id2 , int aff)
             }
         }
         if (aff)
-            printf("Ajout de l'arête réussi entre %d et %d.\n", id1, id2);
+            printf("Ajout de l'arete reussi entre %d et %d.\n", id1, id2);
     }
     else
     {
         if(aff)
-            printf("Un des indices correspond a un sommet qui n'a pas encore ete ajouté .\n");
+            printf("Un des indices correspond a un sommet qui n'a pas encore ete ajoute .\n");
     }
 }
 
